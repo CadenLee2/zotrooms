@@ -1,6 +1,26 @@
 import './StudyRoomCard.css';
 
 import { StudyRoom } from '../../types/types';
+import { MdStarOutline, MdStar, MdLocationPin } from 'react-icons/md';
+import { useMemo } from 'react';
+
+function RatingDisp(props: { value?: number }) {
+  const stars = useMemo(() => {
+    const res = [];
+    for (let i = 0; i < 5; i++) {
+      res.push(i < (props.value ?? 0));
+    }
+    return res;
+  }, [props.value]);
+
+  return (
+    <div className={`rating-disp ${props.value ? '' : 'unrated'}`}>
+      {stars.map((filled, i) => (
+        filled ? <MdStar className="filled" key={i} /> : <MdStarOutline key={i} />
+      ))}
+    </div>
+  );
+}
 
 export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   const room = props.studyRoom;
@@ -8,9 +28,12 @@ export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   return (
     <div className="study-room-card">
       <h3>{room.name}</h3>
-      <i className="sub">@ {room.location}</i>
+      <i className="sub">
+        <MdLocationPin />
+        {room.location}
+      </i>
       <div>
-        Unrated
+        <RatingDisp value={3} />
       </div>
     </div>
   );

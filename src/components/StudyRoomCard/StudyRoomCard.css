@@ -17,3 +17,15 @@ div.study-room-card {
     color: var(--sub);
   }
 }
+
+.rating-disp {
+  font-size: 20px;
+
+  &.unrated {
+    color: var(--sub);
+  }
+
+  .filled {
+    color: var(--gold);
+  }
+}
