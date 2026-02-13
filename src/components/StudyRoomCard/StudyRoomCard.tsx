@@ -26,7 +26,7 @@ export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   const room = props.studyRoom;
 
   return (
-    <div className="study-room-card">
+    <button className="study-room-card">
       <h3>{room.name}</h3>
       <i className="sub">
         <MdLocationPin />
@@ -35,6 +35,6 @@ export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
       <div>
         <RatingDisp value={3} />
       </div>
-    </div>
+    </button>
   );
 }

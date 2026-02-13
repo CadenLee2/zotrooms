@@ -1,11 +1,9 @@
 import "./page.css";
 
 import Header from '../components/Header/Header';
-import StudyRoomCard from '../components/StudyRoomCard/StudyRoomCard';
+import StudyRoomList from '../components/StudyRoomList/StudyRoomList';
 
 import { StudyRoom } from '../types/types';
-
-import { Comic_Neue } from 'next/font/google';
 
 const EXAMPLE_ROOM: StudyRoom = {
   id: "abc",
@@ -19,14 +17,14 @@ const EXAMPLE_ROOM: StudyRoom = {
   slots: []
 };
 
-const font = Comic_Neue({weight:"400"});
-
 export default function Home() {
   return (
-    <div className={`page ${font.className}`}>
+    <div className={`page`}>
       <Header />
-      <h2>All Rooms</h2>
-      <StudyRoomCard studyRoom={EXAMPLE_ROOM} />
+      <div className="main-content">
+        <h2>All Rooms</h2>
+        <StudyRoomList studyRooms={[EXAMPLE_ROOM, EXAMPLE_ROOM]} />
+      </div>
     </div>
   );
 }

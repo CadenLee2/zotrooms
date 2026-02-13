@@ -1,5 +1,6 @@
 :root {
   --background: #0f121a;
+  --backgroundlight: #171921;
   --border: #20222a;
   --text: #e6e8ee;
   --sub: #9ea1aa;
@@ -26,9 +27,13 @@ body {
 body {
   color: var(--text);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-comic-neue);
 }
 
 a {
   color: var(--blue1);
+}
+
+h1, h2, h3 {
+  margin: 0px;
 }

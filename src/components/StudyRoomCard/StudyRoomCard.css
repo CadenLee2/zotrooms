@@ -1,4 +1,4 @@
-div.study-room-card {
+button.study-room-card {
   width: 200px;
   border: solid 1px var(--border);
   border-radius: 4px;
@@ -8,6 +8,15 @@ div.study-room-card {
   flex-direction: column;
   gap: 4px;
 
+  background-color: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: start;
+  width: fit-content;
+
+  transition: background-color 0.1s;
+
   h3 {
     margin: 0px;
     font-weight: 400;
@@ -15,6 +24,11 @@ div.study-room-card {
 
   .sub {
     color: var(--sub);
+  }
+
+  &:hover {
+    background-color: var(--backgroundlight);
+    cursor: pointer;
   }
 }
 
