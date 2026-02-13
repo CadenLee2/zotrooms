@@ -1,15 +1,28 @@
 import "./page.css";
 
 import Header from '../components/Header/Header';
-import Button from '../components/Button/Button';
+import StudyRoomCard from '../components/StudyRoomCard/StudyRoomCard';
+
+import { StudyRoom } from '../types/types';
+
+const EXAMPLE_ROOM: StudyRoom = {
+  id: "abc",
+  name: "Science 400",
+  capacity: 4,
+  location: "Science Library",
+  description: "a room",
+  directions: "down the hall and to the left",
+  techEnhanced: true,
+  url: "https://example.com/",
+  slots: []
+};
 
 export default function Home() {
   return (
     <div className="page">
       <Header />
-      <Button>Start</Button>
-      <h1 className="red">Test</h1>
-      <a>aasdf</a>
+      <h2>All Rooms</h2>
+      <StudyRoomCard studyRoom={EXAMPLE_ROOM} />
     </div>
   );
 }

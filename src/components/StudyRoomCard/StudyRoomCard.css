@@ -1,0 +1,19 @@
+div.study-room-card {
+  width: 200px;
+  border: solid 1px var(--border);
+  border-radius: 4px;
+  padding: 16px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  h3 {
+    margin: 0px;
+    font-weight: 400;
+  }
+
+  .sub {
+    color: var(--sub);
+  }
+}
