@@ -2,13 +2,24 @@
   "name": "zotrooms",
   "version": "0.1.0",
   "description": "A study room rater",
+  "private": true,
   "scripts": {
-    "dev": "concurrently -n backend,frontend -c blue,green \"npm --filter=backend dev\" \"npm --filter=frontend dev\""
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "bugs": {
-    "url": "https://github.com/CadenLee2/zotrooms/issues"
+  "dependencies": {
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "typescript": "^5"
   }
 }
