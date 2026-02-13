@@ -1,0 +1,14 @@
+{
+  "name": "zotrooms",
+  "version": "0.1.0",
+  "description": "A study room rater",
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,green \"npm --filter=backend dev\" \"npm --filter=frontend dev\""
+  },
+  "bugs": {
+    "url": "https://github.com/CadenLee2/zotrooms/issues"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
