@@ -3,6 +3,10 @@
   padding: 20px 24px;
 
   > h2 {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+  }
+
+  .study-room-list {
+    margin-bottom: 20px;
   }
 }

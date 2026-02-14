@@ -2,7 +2,7 @@ button.study-room-card {
   width: 200px;
   border: solid 1px var(--border);
   border-radius: 4px;
-  padding: 16px 20px;
+  padding: 14px 16px;
 
   display: flex;
   flex-direction: column;
