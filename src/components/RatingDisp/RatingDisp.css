@@ -1,0 +1,40 @@
+.rating-disp {
+  font-size: 20px;
+
+  &.unrated {
+    color: var(--sub);
+  }
+
+  .filled {
+    color: var(--gold);
+  }
+}
+
+.rating-disp.interactive {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  button {
+    font-size: 26px;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--text);
+    border: none;
+
+    transition: font-size 0.05s;
+
+    &:hover {
+      cursor: pointer;
+      font-size: 30px;
+    }
+
+    &:active {
+      font-size: 26px;
+    }
+  }
+}

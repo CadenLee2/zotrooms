@@ -10,3 +10,7 @@
     margin-bottom: 20px;
   }
 }
+
+.sub {
+  color: var(--sub);
+}

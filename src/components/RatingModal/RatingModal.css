@@ -12,12 +12,60 @@
 }
 
 .modal-content {
-  max-width: 600px;
+  max-width: 500px;
   width: 100%;
   background-color: var(--backgroundlight);
   border: solid 1px var(--border);
   border-radius: 4px;
   padding: 16px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .loc-info, .loc-info i {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    margin-left: 10px;
+    background-color: var(--blue1);
+    border-radius: 8px;
+    padding: 0px 4px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.modal-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  button.cancel {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: transparent;
+    color: var(--text);
+    border: none;
+    padding: 4px 16px;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: var(--backgroundlight2);
+      cursor: pointer;
+    }
+  }
 }
 
 @media (max-width: 580px) {

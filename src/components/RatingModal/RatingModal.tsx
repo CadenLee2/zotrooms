@@ -3,9 +3,10 @@
 import './RatingModal.css';
 
 import { StudyRoom } from '../../types/types';
-import { MdStarOutline, MdStar, MdLocationPin } from 'react-icons/md';
-import { MouseEvent } from 'react';
+import { MdPeople, MdMonitor, MdLocationPin, MdLaunch } from 'react-icons/md';
+import { MouseEvent, useState } from 'react';
 import Button from '../Button/Button';
+import { RatingDispInteractive } from '../RatingDisp/RatingDisp';
 
 import { useSelectedRoomId } from '../../hooks/hooks';
 
@@ -22,11 +23,11 @@ const EXAMPLE_ROOM: StudyRoom = {
 };
 
 export default function StudyRoomCard() {
-  const room = EXAMPLE_ROOM;
-
   const { selectedRoomId, setSelectedRoomId } = useSelectedRoomId();
 
-  const handleOuterClick = () => {
+  const room = EXAMPLE_ROOM;
+
+  const handleClose = () => {
     setSelectedRoomId(null);
   }
 
@@ -34,11 +35,37 @@ export default function StudyRoomCard() {
     event.stopPropagation();
   }
 
+  // TODO: add initial value
+  const [rating, setRating] = useState<number | null>(null);
+  const [comment, setComment] = useState('');
+
   return (
-    <div onClick={handleOuterClick} className="backdrop">
+    <div onClick={handleClose} className="backdrop">
       <div onClick={handleInnerClick} className="modal-content">
-        <h2>{room.name}</h2>
-        <Button>Confirm</Button>
+        <div className="row">
+          <h2>{room.name}</h2>
+          <a title="Open room URL" target="_blank" href={room.url}>
+            <MdLaunch />
+          </a>
+        </div>
+        <div className="loc-info">
+          <i className="sub">
+            <MdLocationPin />
+            {room.location}
+          </i>
+          <span title={`Capacity: ${room.capacity} people`} className="pill"><MdPeople />{room.capacity}</span>
+          {room.techEnhanced && <span title="Tech Enhanced" className="pill"><MdMonitor />TECH</span>}
+        </div>
+        <p>{room.description}</p>
+        <p className="sub">Directions: {room.directions}</p>
+        <div><hr /></div>
+        <h3>Leave your rating!</h3>
+        <RatingDispInteractive value={rating ?? undefined} setValue={(i) => setRating(i)} />
+        <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Any comments?" />
+        <div className="modal-buttons">
+          <button onClick={handleClose} className="cancel">Cancel</button>
+          <Button>Confirm</Button>
+        </div>
       </div>
     </div>
   );
