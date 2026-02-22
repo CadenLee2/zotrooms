@@ -5,6 +5,9 @@ import ZotRoomsIcon from '../../../public/zotrooms_icon.png';
 
 import { useRef, useEffect } from 'react';
 
+import { setSearch } from '../../store/siteSlice';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+
 function Searchbar() {
   const searchbarRef = useRef<HTMLInputElement | null>(null);
 
@@ -23,15 +26,24 @@ function Searchbar() {
     }
   }, []);
 
+  const search = useAppSelector((state) => state.siteSlice.search);
+  const dispatch = useAppDispatch();
+
   return (
-    <input ref={searchbarRef} type="text" placeholder="Search for keywords (Ctrl+K)..." />
+    <input
+      value={search}
+      onChange={(e) => dispatch(setSearch({ newSearch: e.target.value }))}
+      ref={searchbarRef}
+      type="text"
+      placeholder="Search for keywords (Ctrl+K)..."
+    />
   )
 }
 
 export default function Header() {
   return (
     <div className="header">
-      <Image src={ZotRoomsIcon} alt="ZotRooms icon" />
+      <Image loading="eager" src={ZotRoomsIcon} alt="ZotRooms icon" />
       <h1>ZotRooms</h1>
       <Searchbar />
     </div>
