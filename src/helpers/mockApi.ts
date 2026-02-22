@@ -98,8 +98,11 @@ export const getById = async (id: string) => {
 
 export const keywordSearch = async (keywords: string) => {
   await mockDelay();
-  const isMatch = (r: StudyRoom) => {
-    r.name.includes(keywords) || r.description.includes(keywords);
-  }
+  const lowerKeywords = keywords;
+  const isMatch = (r: StudyRoom) => (
+    r.name.toLowerCase().includes(lowerKeywords) ||
+      r.description.toLowerCase().includes(lowerKeywords) ||
+      r.location.toLowerCase().includes(lowerKeywords)
+  );
   return EXAMPLE_ROOMS.filter(isMatch);
 }

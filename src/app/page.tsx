@@ -13,6 +13,8 @@ import { getRated } from '../helpers/mockApi';
 
 import { useState, useEffect } from 'react';
 
+import MainPage from '../components/MainPage/MainPage';
+
 import { store } from '../store/store';
 import { Provider } from 'react-redux';
 
@@ -27,16 +29,7 @@ export default function Home() {
 
   return (
     <Provider store={store}>
-      <div className={`page`}>
-        <Header />
-        <div className="main-content">
-          <h2>Rated</h2>
-          <StudyRoomList studyRooms={rated} />
-          <h2>All Rooms</h2>
-          <StudyRoomList studyRooms={rated} />
-        </div>
-        {selectedRoomId && <RatingModal />}
-      </div>
+      <MainPage />
     </Provider>
   );
 }
