@@ -29,7 +29,6 @@ function Searchbar() {
 }
 
 export default function Header() {
-
   return (
     <div className="header">
       <Image src={ZotRoomsIcon} alt="ZotRooms icon" />

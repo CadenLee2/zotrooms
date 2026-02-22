@@ -6,7 +6,7 @@ import { StudyRoom } from '../../types/types';
 import { MdLocationPin } from 'react-icons/md';
 import { RatingDisp } from '../RatingDisp/RatingDisp';
 
-import { useSelectedRoomId } from '../../hooks/hooks';
+import { useSelectedRoomId } from '../../helpers/hooks';
 
 export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   const room = props.studyRoom;

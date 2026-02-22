@@ -11,9 +11,16 @@
   padding: 40px;
 }
 
+.loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .modal-content {
   max-width: 500px;
   width: 100%;
+  min-height: 300px;
   background-color: var(--backgroundlight);
   border: solid 1px var(--border);
   border-radius: 4px;
