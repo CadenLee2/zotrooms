@@ -26,7 +26,7 @@ export function RatingDisp(props: { value?: number }) {
 function Star(props: { i: number, filled: boolean, hoveredValue: number | null }) {
   const { i, filled, hoveredValue } = props;
   const shouldFill = (hoveredValue !== null) ? (hoveredValue >= i) : filled;
-  return shouldFill ? <MdStar className="filled" key={i} /> : <MdStarOutline key={i} />
+  return shouldFill ? <MdStar className="filled" /> : <MdStarOutline key={i} />
 }
 
 export function RatingDispInteractive(props: { value?: number, setValue(i: number): void }) {
@@ -52,6 +52,7 @@ export function RatingDispInteractive(props: { value?: number, setValue(i: numbe
     <div className="rating-disp interactive">
       {stars.map((filled, i) => (
         <button
+          key={`interactive-${i}`}
           onMouseEnter={() => hoverButton(i)}
           onMouseLeave={() => unhoverButton(i)}
           onClick={() => props.setValue(i + 1)}

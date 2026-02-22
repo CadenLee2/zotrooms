@@ -70,6 +70,12 @@ input, textarea {
   font-size: inherit;
 }
 
+input, textarea, button, a {
+  &:focus-visible {
+    outline: solid 2px var(--blue2);
+  }
+}
+
 hr {
   border: solid 1px var(--border);
 }

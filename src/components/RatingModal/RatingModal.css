@@ -23,6 +23,10 @@
   flex-direction: column;
   gap: 10px;
 
+  h2:focus {
+    outline: none;
+  }
+
   .row {
     display: flex;
     justify-content: space-between;

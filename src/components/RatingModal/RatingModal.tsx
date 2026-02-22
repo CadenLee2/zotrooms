@@ -4,7 +4,7 @@ import './RatingModal.css';
 
 import { StudyRoom } from '../../types/types';
 import { MdPeople, MdMonitor, MdLocationPin, MdLaunch } from 'react-icons/md';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useState, useRef, useEffect } from 'react';
 import Button from '../Button/Button';
 import { RatingDispInteractive } from '../RatingDisp/RatingDisp';
 
@@ -35,15 +35,21 @@ export default function StudyRoomCard() {
     event.stopPropagation();
   }
 
-  // TODO: add initial value
+  // TODO: add initial value if they've already reviewed it
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
+
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    if (titleRef.current) titleRef.current.focus();
+  }, []);
 
   return (
     <div onClick={handleClose} className="backdrop">
       <div onClick={handleInnerClick} className="modal-content">
         <div className="row">
-          <h2>{room.name}</h2>
+          <h2 tabIndex={-1} autoFocus ref={titleRef}>{room.name}</h2>
           <a title="Open room URL" target="_blank" href={room.url}>
             <MdLaunch />
           </a>
