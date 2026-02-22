@@ -4,6 +4,8 @@ div.header {
   padding: 16px 20px;
 
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
 
   img {
@@ -20,5 +22,19 @@ div.header {
     border-radius: 8px;
     font-size: 26px;
     line-height: 34px;
+  }
+
+  input {
+    height: 30px;
+    max-width: 300px;
+    width: 50%;
+    min-width: 230px;
+    border-radius: 8px;
+    background-color: var(--backgroundlight);
+    color: var(--text);
+    padding: 2px 8px;
+    border: solid 1px var(--border);
+    font-family: inherit;
+    font-size: inherit;
   }
 }
