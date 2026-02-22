@@ -7,11 +7,27 @@ import { MdStarOutline, MdStar, MdLocationPin } from 'react-icons/md';
 import { MouseEvent } from 'react';
 import Button from '../Button/Button';
 
-export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
-  const room = props.studyRoom;
+import { useSelectedRoomId } from '../../hooks/hooks';
+
+const EXAMPLE_ROOM: StudyRoom = {
+  id: "abc",
+  name: "Science 400",
+  capacity: 4,
+  location: "Science Library",
+  description: "a room",
+  directions: "down the hall and to the left",
+  techEnhanced: true,
+  url: "https://example.com/",
+  slots: []
+};
+
+export default function StudyRoomCard() {
+  const room = EXAMPLE_ROOM;
+
+  const { selectedRoomId, setSelectedRoomId } = useSelectedRoomId();
 
   const handleOuterClick = () => {
-    // TODO: close
+    setSelectedRoomId(null);
   }
 
   const handleInnerClick = (event: MouseEvent) => {

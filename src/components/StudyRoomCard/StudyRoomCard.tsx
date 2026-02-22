@@ -4,6 +4,8 @@ import { StudyRoom } from '../../types/types';
 import { MdStarOutline, MdStar, MdLocationPin } from 'react-icons/md';
 import { useMemo } from 'react';
 
+import { useSelectedRoomId } from '../../hooks/hooks';
+
 function RatingDisp(props: { value?: number }) {
   const stars = useMemo(() => {
     const res = [];
@@ -25,8 +27,10 @@ function RatingDisp(props: { value?: number }) {
 export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   const room = props.studyRoom;
 
+  const { setSelectedRoomId } = useSelectedRoomId();
+
   return (
-    <button className="study-room-card">
+    <button className="study-room-card" onClick={() => setSelectedRoomId(room.id)}>
       <h3>{room.name}</h3>
       <i className="sub">
         <MdLocationPin />

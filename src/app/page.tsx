@@ -1,3 +1,5 @@
+'use client'
+
 import "./page.css";
 
 import Header from '../components/Header/Header';
@@ -5,6 +7,9 @@ import StudyRoomList from '../components/StudyRoomList/StudyRoomList';
 import RatingModal from '../components/RatingModal/RatingModal';
 
 import { StudyRoom } from '../types/types';
+import { useSelectedRoomId } from '../hooks/hooks';
+
+import { useSearchParams } from 'next/navigation';
 
 const LOCATIONS = [
   "Gateway Study Center",
@@ -26,6 +31,8 @@ const EXAMPLE_ROOM: StudyRoom = {
 };
 
 export default function Home() {
+  const { selectedRoomId } = useSelectedRoomId();
+
   return (
     <div className={`page`}>
       <Header />
@@ -35,7 +42,7 @@ export default function Home() {
         <h2>All Rooms</h2>
         <StudyRoomList studyRooms={[EXAMPLE_ROOM, EXAMPLE_ROOM]} />
       </div>
-      <RatingModal studyRoom={EXAMPLE_ROOM} />
+      {selectedRoomId && <RatingModal />}
     </div>
   );
 }
