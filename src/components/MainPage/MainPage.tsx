@@ -5,8 +5,9 @@ import RatingModal from '../RatingModal/RatingModal';
 import { StudyRoom } from '../../types/types';
 
 import { useSelectedRoomId } from '../../helpers/hooks';
-import { getRated, keywordSearch } from '../../helpers/mockApi';
-import { useAppSelector } from '../../store/hooks';
+import { getRated, keywordSearch, getReviews } from '../../helpers/mockApi';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { setReviews } from '../../store/siteSlice';
 
 import { useState, useEffect } from 'react';
 
@@ -31,6 +32,12 @@ export default function MainPage() {
   }, [search, setSearchResults]);
 
   const finishedLoading = searchResultsFor === search;
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    getReviews().then(res => dispatch(setReviews({ reviewMap: res })));
+  }, [dispatch]);
 
   return (
     <div className="page">

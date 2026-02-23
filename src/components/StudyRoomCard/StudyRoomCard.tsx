@@ -8,8 +8,14 @@ import { RatingDisp } from '../RatingDisp/RatingDisp';
 
 import { useSelectedRoomId } from '../../helpers/hooks';
 
+import { useAppSelector } from '../../store/hooks';
+
 export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   const room = props.studyRoom;
+
+  const correspondingReview = useAppSelector((state) => (
+    room.id in state.siteSlice.reviews ? state.siteSlice.reviews[room.id] : undefined
+  ));
 
   const { setSelectedRoomId } = useSelectedRoomId();
 
@@ -21,7 +27,7 @@ export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
         {room.location}
       </i>
       <div>
-        <RatingDisp value={3} />
+        <RatingDisp value={correspondingReview?.rating} />
       </div>
     </button>
   );

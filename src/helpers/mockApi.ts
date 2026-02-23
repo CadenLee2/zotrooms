@@ -1,4 +1,4 @@
-import { StudyRoom } from '../types/types';
+import { StudyRoom, ReviewMap } from '../types/types';
 
 const LOCATIONS = [
   "Gateway Study Center",
@@ -79,6 +79,21 @@ const EXAMPLE_ROOMS: StudyRoom[] = [
 
 const MOCK_RATED = EXAMPLE_ROOMS;
 
+const MOCK_REVIEW_MAP: ReviewMap = {
+  "ghi": {
+    rating: 3,
+    explanation: "mid"
+  },
+  "mno": {
+    rating: 5,
+    explanation: "peak"
+  },
+  "abc": {
+    rating: 1,
+    explanation: "cooked"
+  }
+};
+
 const mockDelay = () => new Promise(res => setTimeout(res, 300));
 
 export const getRated = async () => {
@@ -105,4 +120,9 @@ export const keywordSearch = async (keywords: string) => {
       r.location.toLowerCase().includes(lowerKeywords)
   );
   return EXAMPLE_ROOMS.filter(isMatch);
+}
+
+export const getReviews = async () => {
+  await mockDelay();
+  return MOCK_REVIEW_MAP;
 }

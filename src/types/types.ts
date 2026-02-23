@@ -17,3 +17,10 @@ export type StudyRoom = {
   url: string,
   slots: StudyRoomSlot[]
 };
+
+export type Review = {
+  rating: number,
+  explanation: string
+}
+
+export type ReviewMap = Record<string, Review>;

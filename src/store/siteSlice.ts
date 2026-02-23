@@ -1,16 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { Review, ReviewMap } from '../types/types';
+
 const siteSlice = createSlice({
   name: 'site',
   initialState: {
-    search: ''
+    search: '',
+    reviews: {}
+  } as {
+    search: string,
+    reviews: ReviewMap
   },
   reducers: {
     setSearch: (state, action: PayloadAction<{ newSearch: string }>) => {
       state.search = action.payload.newSearch;
+    },
+    setReviews: (state, action: PayloadAction<{ reviewMap: ReviewMap }>) => {
+      state.reviews = action.payload.reviewMap;
+    },
+    setIndividualReview: (state, action: PayloadAction<{ roomId: string, review: Review }>) => {
+      state.reviews[action.payload.roomId] = action.payload.review;
     }
   },
 });
 
-export const { setSearch } = siteSlice.actions;
+export const { setSearch, setReviews, setIndividualReview } = siteSlice.actions;
 export default siteSlice.reducer;
