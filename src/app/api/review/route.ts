@@ -22,8 +22,8 @@ export async function POST(req: Request) {
 
     const parsed = parse.data;
 
-    const tryAnteaterAPI = await fetch(`https://anteaterapi.com/v2/rest/studyRooms/${encodeURIComponent(parsed.roomId)}`);
-    if (!tryAnteaterAPI.ok) {
+    const [tryAnteaterAPI] = await pool.query("select count(1) from room where id = $1;", [parsed.roomId]).then(r => r.rows);
+    if (!tryAnteaterAPI) {
         return Response.json({ error: "bad roomId" }, { status: 400 });
     }
 
