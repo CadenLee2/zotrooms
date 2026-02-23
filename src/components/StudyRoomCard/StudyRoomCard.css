@@ -1,0 +1,24 @@
+button.study-room-card {
+  width: 200px;
+  border: solid 1px var(--border);
+  border-radius: 4px;
+  padding: 14px 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  background-color: transparent;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: start;
+  width: fit-content;
+
+  transition: background-color 0.1s;
+
+  &:hover {
+    background-color: var(--backgroundlight);
+    cursor: pointer;
+  }
+}

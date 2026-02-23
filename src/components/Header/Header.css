@@ -1,0 +1,32 @@
+div.header {
+  width: 100%;
+  border-bottom: solid 1px var(--border);
+  padding: 16px 20px;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  img {
+    height: 40px;
+    width: auto;
+  }
+
+  h1 {
+    background-color: var(--blue2dark);
+    color: var(--text);
+    width: fit-content;
+    margin: 0px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  input {
+    max-width: 300px;
+    width: 50%;
+    min-width: 230px;
+  }
+}
