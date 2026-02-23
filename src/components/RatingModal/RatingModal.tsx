@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 import { RatingDispInteractive } from '../RatingDisp/RatingDisp';
 
 import { useSelectedRoomId } from '../../helpers/hooks';
-import { getById } from '../../helpers/mockApi';
+import { getById } from '../../helpers/api';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { setIndividualReview } from '../../store/siteSlice';
 

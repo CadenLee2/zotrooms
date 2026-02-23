@@ -5,7 +5,7 @@ import RatingModal from '../RatingModal/RatingModal';
 import { StudyRoom } from '../../types/types';
 
 import { useSelectedRoomId } from '../../helpers/hooks';
-import { getRated, keywordSearch, getReviews } from '../../helpers/mockApi';
+import { getRated, keywordSearch, getReviews, getAllRooms } from '../../helpers/api';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { setReviews } from '../../store/siteSlice';
 
@@ -15,6 +15,7 @@ export default function MainPage() {
   const { selectedRoomId } = useSelectedRoomId();
 
   const [rated, setRated] = useState<StudyRoom[]>([]);
+  const [allRooms, setAllRooms] = useState<StudyRoom[]>([]);
 
   const search = useAppSelector((state) => state.siteSlice.search);
 
@@ -23,6 +24,16 @@ export default function MainPage() {
 
   useEffect(() => {
     getRated().then(res => setRated(res));
+    if (search) {
+      keywordSearch(search).then((res) => {
+        setSearchResults(res);
+        setSearchResultsFor(search);
+      });
+    }
+  }, [search, setSearchResults]);
+
+  useEffect(() => {
+    getAllRooms().then(res => setAllRooms(res));
     if (search) {
       keywordSearch(search).then((res) => {
         setSearchResults(res);
@@ -53,7 +64,7 @@ export default function MainPage() {
             <h2>Rated</h2>
             <StudyRoomList studyRooms={rated} />
             <h2>All Rooms</h2>
-            <StudyRoomList studyRooms={rated} />
+            <StudyRoomList studyRooms={allRooms} />
           </>
         )}
       </div>

@@ -2,6 +2,7 @@ import {pool, pushBindFactory} from "../lib";
 import z from "zod";
 
 const getQuerySchema = z.object({
+    id: z.string().optional(),
     location: z.string().optional(),
     ratedOnly: z.coerce.boolean().optional(),
     search: z.string().optional(),
@@ -21,6 +22,9 @@ export async function GET(req: Request) {
                  where true`;
     const bindVals = [] as unknown[];
     const pb = pushBindFactory(bindVals);
+    if (queryParsed.id) {
+        query += ` and id = ${pb(queryParsed.id)}`;
+    }
     if (queryParsed.location) {
         query += ` and location = ${pb(queryParsed.location)}`;
     }

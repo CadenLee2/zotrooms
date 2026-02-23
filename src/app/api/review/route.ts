@@ -1,10 +1,17 @@
 import { pool } from "../lib";
 import z from "zod";
+import { Review } from "@/types/types";
 
 export async function GET() {
     return Response.json(
         await pool.query("select room_id, rating, explanation from review;")
-            .then(({ rows }) => rows)
+            .then(({ rows }) => {
+                const ret = {} as Record<string, Review>;
+                for (const row of rows) {
+                    ret[row.room_id] = row;
+                }
+                return ret;
+            })
     );
 }
 
