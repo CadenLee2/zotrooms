@@ -1,7 +1,9 @@
 :root {
   --background: #0f121a;
   --backgroundlight: #171921;
+  --backgroundlight2: #21232d;
   --border: #20222a;
+  --borderlight: #2f313d;
   --text: #e6e8ee;
   --sub: #9ea1aa;
   --blue1: #317e85;
@@ -10,6 +12,7 @@
   --blue2dark: #1e348a;
 
   --gold: #f2bd2b;
+  --red: #e84356;
 }
 
 /* TODO: dark theme */
@@ -34,6 +37,46 @@ a {
   color: var(--blue1);
 }
 
+p {
+  margin-block: 0px;
+}
+
 h1, h2, h3 {
   margin: 0px;
+}
+
+h3 {
+  font-weight: 400;
+}
+
+input {
+  height: 30px;
+  padding: 2px 8px;
+}
+
+textarea {
+  padding: 8px 12px;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+input, textarea {
+  border-radius: 8px;
+  background-color: var(--backgroundlight2);
+  color: var(--text);
+  border: solid 1px var(--borderlight);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+input, textarea, button, a {
+  &:focus-visible {
+    outline: solid 2px var(--blue2);
+  }
+}
+
+hr {
+  border: solid 1px var(--border);
 }

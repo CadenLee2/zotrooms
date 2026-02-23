@@ -17,29 +17,8 @@ button.study-room-card {
 
   transition: background-color 0.1s;
 
-  h3 {
-    margin: 0px;
-    font-weight: 400;
-  }
-
-  .sub {
-    color: var(--sub);
-  }
-
   &:hover {
     background-color: var(--backgroundlight);
     cursor: pointer;
-  }
-}
-
-.rating-disp {
-  font-size: 20px;
-
-  &.unrated {
-    color: var(--sub);
-  }
-
-  .filled {
-    color: var(--gold);
   }
 }
