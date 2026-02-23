@@ -6,7 +6,7 @@ import { StudyRoom } from '../../types/types';
 
 import { useSelectedRoomId } from '../../helpers/hooks';
 import { getRated, keywordSearch } from '../../helpers/mockApi';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 import { useState, useEffect } from 'react';
 
@@ -18,16 +18,19 @@ export default function MainPage() {
   const search = useAppSelector((state) => state.siteSlice.search);
 
   const [searchResults, setSearchResults] = useState<StudyRoom[] | null>(null);
+  const [searchResultsFor, setSearchResultsFor] = useState('');
 
   useEffect(() => {
     getRated().then(res => setRated(res));
     if (search) {
-      setSearchResults(null);
       keywordSearch(search).then((res) => {
         setSearchResults(res);
+        setSearchResultsFor(search);
       });
     }
-  }, [search]);
+  }, [search, setSearchResults]);
+
+  const finishedLoading = searchResultsFor === search;
 
   return (
     <div className="page">
@@ -36,7 +39,7 @@ export default function MainPage() {
         {search ? (
           <>
             <h2>Search Results</h2>
-            {searchResults ? <StudyRoomList studyRooms={searchResults} /> : "Loading..."}
+            {(searchResults && finishedLoading) ? <StudyRoomList studyRooms={searchResults} /> : "Loading..."}
           </>
         ) : (
           <>
