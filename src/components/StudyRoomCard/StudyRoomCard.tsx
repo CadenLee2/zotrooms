@@ -2,7 +2,7 @@
 
 import './StudyRoomCard.css';
 
-import { StudyRoom } from '../../types/types';
+import { StudyRoom, Review } from '../../types/types';
 import { MdLocationPin } from 'react-icons/md';
 import { RatingDisp } from '../RatingDisp/RatingDisp';
 
@@ -13,9 +13,7 @@ import { useAppSelector } from '../../store/hooks';
 export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   const room = props.studyRoom;
 
-  const correspondingReview = useAppSelector((state) => (
-    room.id in state.siteSlice.reviews ? state.siteSlice.reviews[room.id] : undefined
-  ));
+  const correspondingReview: Review | undefined = useAppSelector((state) => state.siteSlice.reviews[room.id]);
 
   const { setSelectedRoomId } = useSelectedRoomId();
 

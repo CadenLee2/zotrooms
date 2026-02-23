@@ -18,8 +18,13 @@ const siteSlice = createSlice({
     setReviews: (state, action: PayloadAction<{ reviewMap: ReviewMap }>) => {
       state.reviews = action.payload.reviewMap;
     },
-    setIndividualReview: (state, action: PayloadAction<{ roomId: string, review: Review }>) => {
-      state.reviews[action.payload.roomId] = action.payload.review;
+    setIndividualReview: (state, action: PayloadAction<{ roomId: string, review: Review | undefined }>) => {
+      const review = action.payload.review;
+      if (review) {
+        state.reviews[action.payload.roomId] = review;
+      } else {
+        delete state.reviews[action.payload.roomId];
+      }
     }
   },
 });

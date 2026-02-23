@@ -63,7 +63,7 @@
   justify-content: flex-end;
   gap: 10px;
 
-  button.cancel {
+  button.cancel, button.delete {
     font-family: inherit;
     font-size: inherit;
     background-color: transparent;
@@ -76,6 +76,10 @@
       background-color: var(--backgroundlight2);
       cursor: pointer;
     }
+  }
+
+  button.delete {
+    color: var(--red);
   }
 }
 
