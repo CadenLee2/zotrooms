@@ -25,7 +25,8 @@ export async function GET(req: Request) {
         query += ` and location = ${pb(queryParsed.location)}`;
     }
     if (queryParsed.search) {
-        query += ` and search ilike ${'%' + pb(queryParsed.search) + '%'}`;
+        let searchBound = pb(`%${queryParsed.search}%`);
+        query += ` and (name ilike ${searchBound} or location ilike ${searchBound} or description ilike ${searchBound})`;
     }
     if (queryParsed.ratedOnly) {
         query += ` and review.id is not null`;
