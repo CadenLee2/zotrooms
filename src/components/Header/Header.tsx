@@ -1,9 +1,9 @@
 import "./Header.css";
 
-import Image from 'next/image';
-import ZotRoomsIcon from '../../../public/zotrooms_icon.png';
+import Image from "next/image";
+import ZotRoomsIcon from "../../../public/zotrooms_icon.png";
 
-import { useRef, useEffect, useState, KeyboardEventHandler } from 'react';
+import { useRef, useEffect, useState, KeyboardEventHandler } from "react";
 
 import { setSearch } from '@/store/siteSlice';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';

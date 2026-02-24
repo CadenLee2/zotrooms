@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Comic_Neue } from 'next/font/google';
+import { Comic_Neue } from "next/font/google";
 import "./globals.css";
 import React from "react";
 

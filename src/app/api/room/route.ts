@@ -35,7 +35,7 @@ export async function GET(req: Request) {
     if (queryParsed.ratedOnly) {
         query += ` and review.id is not null`;
     }
-    query += ';'
+    query += ";"
 
     const rooms = await pool.query(query, bindVals).then(r => r.rows.map(r => {
         return {

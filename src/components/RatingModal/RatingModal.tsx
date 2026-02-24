@@ -1,12 +1,12 @@
 "use client"
 
-import './RatingModal.css';
+import "./RatingModal.css";
 
-import { StudyRoom, Review } from '@/types/types';
-import { MdPeople, MdMonitor, MdLocationPin, MdLaunch } from 'react-icons/md';
-import { MouseEvent, useState, useRef, useEffect } from 'react';
-import Button from '../Button/Button';
-import { RatingDispInteractive } from '../RatingDisp/RatingDisp';
+import { StudyRoom, Review } from "@/types/types";
+import { MdPeople, MdMonitor, MdLocationPin, MdLaunch } from "react-icons/md";
+import { MouseEvent, useState, useRef, useEffect } from "react";
+import Button from "../Button/Button";
+import { RatingDispInteractive } from "../RatingDisp/RatingDisp';
 
 import { useSelectedRoomId } from '@/helpers/hooks';
 import { getById, updateReview, deleteReview } from '@/helpers/api';

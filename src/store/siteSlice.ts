@@ -1,11 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Review, ReviewMap } from '@/types/types';
+import { Review, ReviewMap } from "@/types/types";
 
 const siteSlice = createSlice({
-  name: 'site',
+  name: "site",
   initialState: {
-    search: '',
+    search: "",
     reviews: {}
   } as {
     search: string,
