@@ -16,7 +16,7 @@ export async function GET(req: Request) {
     }
     const queryParsed = queryParse.data;
 
-    let query = `select room.id, location, name, capacity, description, directions, tech_enhanced
+    let query = `select room.id, location, name, capacity, description, directions, tech_enhanced, url
                  from room
                           left join review on room.id = review.room_id
                  where true`;
@@ -46,6 +46,7 @@ export async function GET(req: Request) {
             description: r.description as string,
             directions: r.directions as string,
             techEnhanced: r.techEnhanced as boolean,
+            url: r.url as string,
         }
     }));
 

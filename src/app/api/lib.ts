@@ -12,13 +12,14 @@ async function initDb(pool: Pool) {
     await pool.query(`
         create table if not exists room
         (
-            "id"            varchar primary key not null,
-            "location"      varchar             not null,
-            "name"          varchar             not null,
-            "capacity"      integer             not null,
-            "description"   varchar             not null,
-            "directions"    varchar             not null,
-            "tech_enhanced" boolean             not null
+            id            varchar primary key not null,
+            location      varchar             not null,
+            name          varchar             not null,
+            capacity      integer             not null,
+            description   varchar             not null,
+            directions    varchar             not null,
+            tech_enhanced boolean             not null,
+            url           varchar             not null
         );
 
         create table if not exists review
@@ -32,7 +33,7 @@ async function initDb(pool: Pool) {
 
     const roomSchema = z.object({
         id: z.string(),
-        name: z.string(),
+        name: z.string().nonempty(),
         capacity: z.number().int(),
         location: z.string(),
         description: z.string(),
@@ -48,13 +49,13 @@ async function initDb(pool: Pool) {
         .filter(r => r.success)
         .map(r => r.data);
 
-    let query = `insert into room (id, location, name, capacity, description, directions, tech_enhanced)
+    let query = `insert into room (id, location, name, capacity, description, directions, tech_enhanced, url)
     values `
     let roomsSoFar = 0;
     const bindVals = [] as unknown[];
     let pb = pushBindFactory(bindVals)
     for (const room of rooms) {
-        query += `(${pb(room.id)}, ${pb(room.location)}, ${pb(room.name)}, ${pb(room.capacity)}, ${pb(room.description)}, ${pb(room.directions)}, ${pb(room.techEnhanced)})`
+        query += `(${pb(room.id)}, ${pb(room.location)}, ${pb(room.name)}, ${pb(room.capacity)}, ${pb(room.description)}, ${pb(room.directions)}, ${pb(room.techEnhanced)}, ${pb(room.url)})`
         if (roomsSoFar != rooms.length - 1) {
             query += ", "
         }
