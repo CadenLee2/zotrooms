@@ -5,10 +5,10 @@ import ZotRoomsIcon from "../../../public/zotrooms_icon.png";
 
 import { useRef, useEffect, useState, KeyboardEventHandler } from "react";
 
-import { setSearch } from '@/store/siteSlice';
-import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { setSearch } from "@/store/siteSlice";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
 
-import { MdSearch } from 'react-icons/md';
+import { MdSearch } from "react-icons/md";
 
 function Searchbar(props: { input: string, setInput(s: string): void }) {
   const { input, setInput } = props;
@@ -17,16 +17,16 @@ function Searchbar(props: { input: string, setInput(s: string): void }) {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === 'k' && searchbarRef.current) {
+      if (e.ctrlKey && e.key === "k" && searchbarRef.current) {
         e.preventDefault();
         searchbarRef.current.focus();
       }
     }
 
-    window.addEventListener('keydown', handleKey);
+    window.addEventListener("keydown", handleKey);
 
     return () => {
-      window.removeEventListener('keydown', handleKey);
+      window.removeEventListener("keydown", handleKey);
     }
   }, []);
 
@@ -37,14 +37,14 @@ function Searchbar(props: { input: string, setInput(s: string): void }) {
   }
 
   const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       submitSearch();
     }
   }
 
   const handleChange = (newValue: string) => {
     setInput(newValue);
-    if (newValue === '') {
+    if (newValue === "") {
       dispatch(setSearch({ newSearch: newValue }));
     }
   }
@@ -72,8 +72,8 @@ export default function Header() {
   const [input, setInput] = useState(search);
 
   const resetSearch = () => {
-    dispatch(setSearch({ newSearch: '' }));
-    setInput('');
+    dispatch(setSearch({ newSearch: "" }));
+    setInput("");
   }
 
   return (

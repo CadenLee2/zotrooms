@@ -6,12 +6,12 @@ import { StudyRoom, Review } from "@/types/types";
 import { MdPeople, MdMonitor, MdLocationPin, MdLaunch } from "react-icons/md";
 import { MouseEvent, useState, useRef, useEffect } from "react";
 import Button from "../Button/Button";
-import { RatingDispInteractive } from "../RatingDisp/RatingDisp';
+import { RatingDispInteractive } from "../RatingDisp/RatingDisp";
 
-import { useSelectedRoomId } from '@/helpers/hooks';
-import { getById, updateReview, deleteReview } from '@/helpers/api';
-import { useAppSelector, useAppDispatch } from '@/store/hooks';
-import { setIndividualReview } from '@/store/siteSlice';
+import { useSelectedRoomId } from "@/helpers/hooks";
+import { getById, updateReview, deleteReview } from "@/helpers/api";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { setIndividualReview } from "@/store/siteSlice";
 
 function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
   const { room, handleClose } = props;
@@ -25,14 +25,14 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
   }, []);
 
   const [rating, setRating] = useState<number | null>(currentReview?.rating ?? null);
-  const [explanation, setExplanation] = useState(currentReview?.explanation ?? '');
-  const [loading, setLoading] = useState<'clearing' | 'posting' | null>(null);
+  const [explanation, setExplanation] = useState(currentReview?.explanation ?? "");
+  const [loading, setLoading] = useState<"clearing" | "posting" | null>(null);
 
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
     // TODO: set loading state, and wait for API, and THEN dispatch
-    setLoading('clearing');
+    setLoading("clearing");
     deleteReview(room.id).then((res) => {
       if (res) {
         dispatch(setIndividualReview({ roomId: room.id, review: undefined }));
@@ -44,7 +44,7 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
   const handleConfirm = () => {
     if (!rating) return;
     // TODO: set loading state, and wait for API, and THEN dispatch
-    setLoading('posting');
+    setLoading("posting");
     updateReview({ roomId: room.id, rating, explanation }).then((res) => {
       if (res) {
         dispatch(setIndividualReview({ roomId: room.id, review: { rating, explanation } }));
@@ -72,16 +72,16 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
       <p>{room.description}</p>
       {room.directions && <p className="sub">Directions: {room.directions}</p>}
       <div><hr /></div>
-      <h3>{currentReview ? 'Edit' : 'Leave'} your rating!</h3>
+      <h3>{currentReview ? "Edit" : "Leave"} your rating!</h3>
       <RatingDispInteractive value={rating ?? undefined} setValue={(i) => setRating(i)} />
       <textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} placeholder="Any comments?" />
       <div className="modal-buttons">
         <button onClick={handleClose} className="cancel">Cancel</button>
         {currentReview && <button disabled={!!loading} onClick={handleDelete} className="delete">
-          {loading === 'clearing' ? 'Loading...' : 'Delete review'}
+          {loading === "clearing" ? "Loading..." : "Delete review"}
         </button>}
         <Button onClick={handleConfirm} disabled={!rating || !!loading}>
-          {loading === 'posting' ? 'Loading...' : 'Confirm'}
+          {loading === "posting" ? "Loading..." : "Confirm"}
         </Button>
       </div>
     </>
