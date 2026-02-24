@@ -24,15 +24,6 @@ export default function MainPage() {
 
   useEffect(() => {
     getRated().then(res => setRated(res));
-    if (search) {
-      keywordSearch(search).then((res) => {
-        setSearchResults(res);
-        setSearchResultsFor(search);
-      });
-    }
-  }, [search, setSearchResults]);
-
-  useEffect(() => {
     getAllRooms().then(res => setAllRooms(res));
     if (search) {
       keywordSearch(search).then((res) => {
@@ -42,7 +33,7 @@ export default function MainPage() {
     }
   }, [search, setSearchResults]);
 
-  const finishedLoading = searchResultsFor === search;
+  const finishedLoadingSearch = searchResultsFor === search;
 
   const dispatch = useAppDispatch();
 
@@ -57,12 +48,12 @@ export default function MainPage() {
         {search ? (
           <>
             <h2>Search Results</h2>
-            {(searchResults && finishedLoading) ? <StudyRoomList studyRooms={searchResults} /> : "Loading..."}
+            {(searchResults && finishedLoadingSearch) ? <StudyRoomList studyRooms={searchResults} /> : "Loading..."}
           </>
         ) : (
           <>
             <h2>Rated</h2>
-            <StudyRoomList studyRooms={rated} />
+            <StudyRoomList studyRooms={rated} emptyMessage="You haven't rated any rooms yet!" />
             <h2>All Rooms</h2>
             <StudyRoomList studyRooms={allRooms} />
           </>

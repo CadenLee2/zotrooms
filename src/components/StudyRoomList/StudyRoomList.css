@@ -1,4 +1,6 @@
 .study-room-list {
   display: flex;
   gap: 12px;
+  width: 100%;
+  overflow-x: auto;
 }
