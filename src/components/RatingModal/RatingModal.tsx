@@ -36,8 +36,7 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
     deleteReview(room.id).then((res) => {
       if (res) {
         dispatch(setIndividualReview({ roomId: room.id, review: undefined }));
-        setRating(null);
-        setExplanation('');
+        handleClose();
       }
     });
   }
@@ -79,7 +78,7 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
       <div className="modal-buttons">
         <button onClick={handleClose} className="cancel">Cancel</button>
         {currentReview && <button disabled={!!loading} onClick={handleDelete} className="delete">
-          {loading === 'clearing' ? 'Loading...' : 'Clear review'}
+          {loading === 'clearing' ? 'Loading...' : 'Delete review'}
         </button>}
         <Button onClick={handleConfirm} disabled={!rating || !!loading}>
           {loading === 'posting' ? 'Loading...' : 'Confirm'}
