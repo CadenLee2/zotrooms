@@ -27,6 +27,9 @@ export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
       <div>
         <RatingDisp value={correspondingReview?.rating} />
       </div>
+      {correspondingReview?.explanation && <i className="sub usertext">
+        &quot;{correspondingReview.explanation}&quot;
+        </i>}
     </button>
   );
 }

@@ -22,4 +22,10 @@ button.study-room-card {
     background-color: var(--backgroundlight);
     cursor: pointer;
   }
+
+  .usertext {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
