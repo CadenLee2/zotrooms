@@ -2,12 +2,12 @@ import Header from '../Header/Header';
 import StudyRoomList from '../StudyRoomList/StudyRoomList';
 import RatingModal from '../RatingModal/RatingModal';
 
-import { StudyRoom } from '../../types/types';
+import { StudyRoom } from '@/types/types';
 
-import { useSelectedRoomId } from '../../helpers/hooks';
-import { getRated, keywordSearch, getReviews, getByLocation } from '../../helpers/api';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { setReviews, setSearch } from '../../store/siteSlice';
+import { useSelectedRoomId } from '@/helpers/hooks';
+import { getRated, keywordSearch, getReviews, getByLocation } from '@/helpers/api';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
+import { setReviews, setSearch } from '@/store/siteSlice';
 import { MdSearch } from 'react-icons/md';
 
 import { useState, useEffect } from 'react';

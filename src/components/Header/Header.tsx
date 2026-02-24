@@ -5,8 +5,8 @@ import ZotRoomsIcon from '../../../public/zotrooms_icon.png';
 
 import { useRef, useEffect, useState, KeyboardEventHandler } from 'react';
 
-import { setSearch } from '../../store/siteSlice';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { setSearch } from '@/store/siteSlice';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
 
 import { MdSearch } from 'react-icons/md';
 

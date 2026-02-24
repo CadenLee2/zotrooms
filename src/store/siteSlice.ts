@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Review, ReviewMap } from '../types/types';
+import { Review, ReviewMap } from '@/types/types';
 
 const siteSlice = createSlice({
   name: 'site',

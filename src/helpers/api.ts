@@ -1,4 +1,4 @@
-import {StudyRoom, ReviewMap, ReviewWithId} from '../types/types';
+import {StudyRoom, ReviewMap, ReviewWithId} from '@/types/types';
 
 export async function getRated(): Promise<StudyRoom[]> {
     return fetch("/api/room?ratedOnly=1").then(r => r.json());

@@ -2,7 +2,7 @@ import './StudyRoomList.css';
 
 import StudyRoomCard from '../StudyRoomCard/StudyRoomCard';
 
-import { StudyRoom } from '../../types/types';
+import { StudyRoom } from '@/types/types';
 
 export default function StudyRoomList(props: { studyRooms: StudyRoom[], emptyMessage?: string, grid?: true }) {
   const rooms = props.studyRooms;
