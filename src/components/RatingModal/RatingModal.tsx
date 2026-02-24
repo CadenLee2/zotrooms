@@ -24,14 +24,13 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
     if (titleRef.current) titleRef.current.focus();
   }, []);
 
-  // TODO: add initial value if they've already reviewed it
   const [rating, setRating] = useState<number | null>(currentReview?.rating ?? null);
   const [comment, setComment] = useState(currentReview?.explanation ?? '');
 
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
-    // TODO: loading state, and wait for API
+    // TODO: set loading state, and wait for API, and THEN dispatch
     dispatch(setIndividualReview({ roomId: room.id, review: undefined }));
     setRating(null);
     setComment('');
@@ -39,9 +38,8 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
 
   const handleConfirm = () => {
     if (!rating) return;
+    // TODO: set loading state, and wait for API, and THEN dispatch
     dispatch(setIndividualReview({ roomId: room.id, review: { rating, explanation: comment } }));
-
-    // TODO: loading state, and wait for API
     handleClose();
   }
 
@@ -49,9 +47,9 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
     <>
       <div className="row">
         <h2 tabIndex={-1} autoFocus ref={titleRef}>{room.name}</h2>
-        <a title="Open room URL" target="_blank" href={room.url}>
+        {room.url && <a title="Open room URL" target="_blank" href={room.url}>
           <MdLaunch />
-        </a>
+        </a>}
       </div>
       <div className="loc-info">
         <i className="sub">

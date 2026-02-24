@@ -1,12 +1,5 @@
 import {StudyRoom, ReviewMap} from '../types/types';
 
-const LOCATIONS = [
-    "Gateway Study Center",
-    "Science Library",
-    "Multimedia Resources Center",
-    "Langson Library"
-];
-
 export async function getRated(): Promise<StudyRoom[]> {
     return fetch("/api/room?ratedOnly=1").then(r => r.json());
 }
