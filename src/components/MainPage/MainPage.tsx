@@ -91,7 +91,7 @@ export default function MainPage() {
         {search ? (
           <>
             <h2>Results for <i>{search}</i></h2>
-            {(searchResults && finishedLoadingSearch) ? <StudyRoomList studyRooms={searchResults} /> : "Loading..."}
+            {(searchResults && finishedLoadingSearch) ? <StudyRoomList grid studyRooms={searchResults} /> : "Loading..."}
           </>
         ) : (
           <>
