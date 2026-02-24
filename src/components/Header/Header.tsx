@@ -10,7 +10,9 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks';
 
 import { MdSearch } from 'react-icons/md';
 
-function Searchbar() {
+function Searchbar(props: { input: string, setInput(s: string): void }) {
+  const { input, setInput } = props;
+
   const searchbarRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -27,10 +29,6 @@ function Searchbar() {
       window.removeEventListener('keydown', handleKey);
     }
   }, []);
-
-  const search = useAppSelector((state) => state.siteSlice.search);
-
-  const [input, setInput] = useState(search);
 
   const dispatch = useAppDispatch();
 
@@ -69,8 +67,13 @@ function Searchbar() {
 export default function Header() {
   const dispatch = useAppDispatch();
 
+  const search = useAppSelector((state) => state.siteSlice.search);
+
+  const [input, setInput] = useState(search);
+
   const resetSearch = () => {
     dispatch(setSearch({ newSearch: '' }));
+    setInput('');
   }
 
   return (
@@ -79,7 +82,7 @@ export default function Header() {
         <Image loading="eager" src={ZotRoomsIcon} alt="ZotRooms icon" />
         <h1>ZotRooms</h1>
       </button>
-      <Searchbar />
+      <Searchbar input={input} setInput={setInput} />
     </div>
   );
 }
