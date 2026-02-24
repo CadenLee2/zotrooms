@@ -23,7 +23,7 @@ const newReviewSchema = z.object({
 
 const deleteSchema = z.object({ roomId: z.string() });
 
-export async function PUT(req: Request) {
+export async function POST(req: Request) {
     const parse = newReviewSchema.safeParse(await req.json().catch(() => ({})));
     if (!parse.success) {
         return Response.json(JSON.parse(parse.error.message), { status: 400 });

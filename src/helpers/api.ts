@@ -28,14 +28,14 @@ export async function getReviews(): Promise<ReviewMap> {
 
 export async function updateReview(review: ReviewWithId): Promise<boolean> {
     return fetch("/api/review", {
-        method: 'PUT',
+        method: "POST",
         body: JSON.stringify(review)
     }).then(r => r.ok)
 }
 
 export async function deleteReview(roomId: string): Promise<boolean> {
     return fetch("/api/review", {
-        method: 'DELETE',
+        method: "DELETE",
         body: JSON.stringify({ roomId })
     }).then(r => r.ok)
 }
