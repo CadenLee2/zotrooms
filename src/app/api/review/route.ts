@@ -39,9 +39,10 @@ export async function PUT(req: Request) {
     const result = await pool.query(`
         insert into review (room_id, rating, explanation)
         values ($1, $2, $3)
-        on conflict(room_id) do update set rating=excluded.rating, explanation=excluded.explanation
-        returning id, room_id, rating, explanation;
-    `, [parsed.roomId, parsed.rating, parsed.explanation]);
+        on conflict (room_id) do update set rating = excluded.rating, explanation = excluded.explanation
+        returning id, room_id, rating, explanation;`,
+        [parsed.roomId, parsed.rating, parsed.explanation]
+    );
 
     if (result.rowCount == 0) {
         return Response.json({ error: "duplicate review for this room" }, { status: 409 });
@@ -58,7 +59,7 @@ export async function DELETE(req: Request) {
 
     const parsed = parse.data;
 
-    const result = await pool.query("delete from review where room_id = $1 returning *;", [parsed.roomId]);
+    const result = await pool.query("delete from review where room_id = $1 returning 1;", [parsed.roomId]);
 
     if (result.rowCount === 0) {
         return Response.json({ error: "could not find room to delete" }, { status: 404 });
