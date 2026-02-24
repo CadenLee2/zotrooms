@@ -62,7 +62,7 @@ export default function MainPage() {
       <div className="attribution">
         Built for <a href="https://icssc.club/">ICSSC</a>&apos;s IrvineHacks 2026 workshop{' '}
         • <a href="https://github.com/CadenLee2/zotrooms">Source</a>{' '}
-        • Data from <a href="https://docs.icssc.club/docs/about/anteaterapi">Anteater API</a>
+        • Data from <a href="https://icssc.link/about-anteaterapi">Anteater API</a>
       </div>
       {selectedRoomId && <RatingModal />}
     </div>
