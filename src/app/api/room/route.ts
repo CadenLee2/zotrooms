@@ -23,13 +23,13 @@ export async function GET(req: Request) {
     const bindVals = [] as unknown[];
     const pb = pushBindFactory(bindVals);
     if (queryParsed.id) {
-        query += ` and id = ${pb(queryParsed.id)}`;
+        query += ` and room.id = ${pb(queryParsed.id)}`;
     }
     if (queryParsed.location) {
         query += ` and location = ${pb(queryParsed.location)}`;
     }
     if (queryParsed.search) {
-        let searchBound = pb(`%${queryParsed.search}%`);
+        const searchBound = pb(`%${queryParsed.search}%`);
         query += ` and (name ilike ${searchBound} or location ilike ${searchBound} or description ilike ${searchBound})`;
     }
     if (queryParsed.ratedOnly) {
