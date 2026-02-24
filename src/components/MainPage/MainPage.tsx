@@ -96,7 +96,7 @@ export default function MainPage() {
         ) : (
           <>
             <h2>Rated</h2>
-            <StudyRoomList studyRooms={rated} emptyMessage="You haven"t rated any rooms yet!" />
+            <StudyRoomList studyRooms={rated} emptyMessage="You haven't rated any rooms yet!" />
             <BrowseLocations />
           </>
         )}
