@@ -21,6 +21,10 @@ export type StudyRoom = {
 export type Review = {
   rating: number,
   explanation: string
-}
+};
+
+export type ReviewWithId = Review & {
+  roomId: string
+};
 
 export type ReviewMap = Record<string, Review>;

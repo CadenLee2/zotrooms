@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 import { RatingDispInteractive } from '../RatingDisp/RatingDisp';
 
 import { useSelectedRoomId } from '../../helpers/hooks';
-import { getById } from '../../helpers/api';
+import { getById, updateReview, deleteReview } from '../../helpers/api';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { setIndividualReview } from '../../store/siteSlice';
 
@@ -25,22 +25,33 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
   }, []);
 
   const [rating, setRating] = useState<number | null>(currentReview?.rating ?? null);
-  const [comment, setComment] = useState(currentReview?.explanation ?? '');
+  const [explanation, setExplanation] = useState(currentReview?.explanation ?? '');
+  const [loading, setLoading] = useState<'clearing' | 'posting' | null>(null);
 
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
     // TODO: set loading state, and wait for API, and THEN dispatch
-    dispatch(setIndividualReview({ roomId: room.id, review: undefined }));
-    setRating(null);
-    setComment('');
+    setLoading('clearing');
+    deleteReview(room.id).then((res) => {
+      if (res) {
+        dispatch(setIndividualReview({ roomId: room.id, review: undefined }));
+        setRating(null);
+        setExplanation('');
+      }
+    });
   }
 
   const handleConfirm = () => {
     if (!rating) return;
     // TODO: set loading state, and wait for API, and THEN dispatch
-    dispatch(setIndividualReview({ roomId: room.id, review: { rating, explanation: comment } }));
-    handleClose();
+    setLoading('posting');
+    updateReview({ roomId: room.id, rating, explanation }).then((res) => {
+      if (res) {
+        dispatch(setIndividualReview({ roomId: room.id, review: { rating, explanation } }));
+        handleClose();
+      }
+    });
   }
 
   return (
@@ -64,11 +75,15 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
       <div><hr /></div>
       <h3>{currentReview ? 'Edit' : 'Leave'} your rating!</h3>
       <RatingDispInteractive value={rating ?? undefined} setValue={(i) => setRating(i)} />
-      <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Any comments?" />
+      <textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} placeholder="Any comments?" />
       <div className="modal-buttons">
         <button onClick={handleClose} className="cancel">Cancel</button>
-        {currentReview && <button onClick={handleDelete} className="delete">Clear review</button>}
-        <Button onClick={handleConfirm} disabled={!rating}>Confirm</Button>
+        {currentReview && <button disabled={!!loading} onClick={handleDelete} className="delete">
+          {loading === 'clearing' ? 'Loading...' : 'Clear review'}
+        </button>}
+        <Button onClick={handleConfirm} disabled={!rating || !!loading}>
+          {loading === 'posting' ? 'Loading...' : 'Confirm'}
+        </Button>
       </div>
     </>
   );
