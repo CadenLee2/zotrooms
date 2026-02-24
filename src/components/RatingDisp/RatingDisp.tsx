@@ -1,9 +1,9 @@
 "use client"
 
-import './RatingDisp.css';
+import "./RatingDisp.css";
 
-import { useMemo, useState } from 'react';
-import { MdStarOutline, MdStar } from 'react-icons/md';
+import { useMemo, useState } from "react";
+import { MdStarOutline, MdStar } from "react-icons/md";
 
 export function RatingDisp(props: { value?: number }) {
   const stars = useMemo(() => {
@@ -15,7 +15,7 @@ export function RatingDisp(props: { value?: number }) {
   }, [props.value]);
 
   return (
-    <div className={`rating-disp ${props.value ? '' : 'unrated'}`}>
+    <div className={`rating-disp ${props.value ? "" : "unrated"}`}>
       {stars.map((filled, i) => (
         filled ? <MdStar className="filled" key={i} /> : <MdStarOutline key={i} />
       ))}

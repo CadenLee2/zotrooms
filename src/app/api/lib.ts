@@ -53,7 +53,7 @@ async function initDb(pool: Pool) {
     values `
     let roomsSoFar = 0;
     const bindVals = [] as unknown[];
-    let pb = pushBindFactory(bindVals)
+    const pb = pushBindFactory(bindVals)
     for (const room of rooms) {
         query += `(${pb(room.id)}, ${pb(room.location)}, ${pb(room.name)}, ${pb(room.capacity)}, ${pb(room.description)}, ${pb(room.directions)}, ${pb(room.techEnhanced)}, ${pb(room.url)})`
         if (roomsSoFar != rooms.length - 1) {

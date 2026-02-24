@@ -1,6 +1,6 @@
 import "./Button.css";
 
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 export default function Button(props: { children: ReactNode, disabled: boolean, onClick(): void }) {
   return (

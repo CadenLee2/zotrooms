@@ -1,14 +1,14 @@
 "use client";
 
-import './StudyRoomCard.css';
+import "./StudyRoomCard.css";
 
-import { StudyRoom, Review } from '../../types/types';
-import { MdLocationPin } from 'react-icons/md';
-import { RatingDisp } from '../RatingDisp/RatingDisp';
+import { StudyRoom, Review } from "@/types/types";
+import { MdLocationPin } from "react-icons/md";
+import { RatingDisp } from "../RatingDisp/RatingDisp";
 
-import { useSelectedRoomId } from '../../helpers/hooks';
+import { useSelectedRoomId } from "@/helpers/hooks";
 
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from "@/store/hooks";
 
 export default function StudyRoomCard(props: { studyRoom: StudyRoom }) {
   const room = props.studyRoom;

@@ -1,11 +1,11 @@
-'use client'
+"use client"
 
 import "./page.css";
 
-import MainPage from '../components/MainPage/MainPage';
+import MainPage from "../components/MainPage/MainPage";
 
-import { store } from '../store/store';
-import { Provider } from 'react-redux';
+import { store } from "@/store/store";
+import { Provider } from "react-redux";
 
 export default function Home() {
   return (
