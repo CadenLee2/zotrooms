@@ -34,7 +34,6 @@ export async function updateReview(review: ReviewWithId): Promise<boolean> {
 }
 
 export async function deleteReview(roomId: string): Promise<boolean> {
-    // TODO: impl
     return fetch("/api/review", {
         method: 'DELETE',
         body: JSON.stringify({ roomId })
