@@ -22,7 +22,7 @@ Use Railway!
 This project uses the following technologies:
 - Next.js
 - Backend
-    - [Anteater API](https://docs.icssc.club/docs/about/anteaterapi)
+    - [Anteater API](https://icssc.link/about-anteaterapi)
     - PostgreSQL
 - Frontend
     - Next.js

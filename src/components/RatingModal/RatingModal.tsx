@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 import { RatingDispInteractive } from '../RatingDisp/RatingDisp';
 
 import { useSelectedRoomId } from '../../helpers/hooks';
-import { getById } from '../../helpers/api';
+import { getById, updateReview, deleteReview } from '../../helpers/api';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { setIndividualReview } from '../../store/siteSlice';
 
@@ -24,34 +24,42 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
     if (titleRef.current) titleRef.current.focus();
   }, []);
 
-  // TODO: add initial value if they've already reviewed it
   const [rating, setRating] = useState<number | null>(currentReview?.rating ?? null);
-  const [comment, setComment] = useState(currentReview?.explanation ?? '');
+  const [explanation, setExplanation] = useState(currentReview?.explanation ?? '');
+  const [loading, setLoading] = useState<'clearing' | 'posting' | null>(null);
 
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
-    // TODO: loading state, and wait for API
-    dispatch(setIndividualReview({ roomId: room.id, review: undefined }));
-    setRating(null);
-    setComment('');
+    // TODO: set loading state, and wait for API, and THEN dispatch
+    setLoading('clearing');
+    deleteReview(room.id).then((res) => {
+      if (res) {
+        dispatch(setIndividualReview({ roomId: room.id, review: undefined }));
+        handleClose();
+      }
+    });
   }
 
   const handleConfirm = () => {
     if (!rating) return;
-    dispatch(setIndividualReview({ roomId: room.id, review: { rating, explanation: comment } }));
-
-    // TODO: loading state, and wait for API
-    handleClose();
+    // TODO: set loading state, and wait for API, and THEN dispatch
+    setLoading('posting');
+    updateReview({ roomId: room.id, rating, explanation }).then((res) => {
+      if (res) {
+        dispatch(setIndividualReview({ roomId: room.id, review: { rating, explanation } }));
+        handleClose();
+      }
+    });
   }
 
   return (
     <>
       <div className="row">
         <h2 tabIndex={-1} autoFocus ref={titleRef}>{room.name}</h2>
-        <a title="Open room URL" target="_blank" href={room.url}>
+        {room.url && <a title="Open room URL" target="_blank" href={room.url}>
           <MdLaunch />
-        </a>
+        </a>}
       </div>
       <div className="loc-info">
         <i className="sub">
@@ -62,15 +70,19 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
         {room.techEnhanced && <span title="Tech Enhanced" className="pill"><MdMonitor />TECH</span>}
       </div>
       <p>{room.description}</p>
-      <p className="sub">Directions: {room.directions}</p>
+      {room.directions && <p className="sub">Directions: {room.directions}</p>}
       <div><hr /></div>
       <h3>{currentReview ? 'Edit' : 'Leave'} your rating!</h3>
       <RatingDispInteractive value={rating ?? undefined} setValue={(i) => setRating(i)} />
-      <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Any comments?" />
+      <textarea value={explanation} onChange={(e) => setExplanation(e.target.value)} placeholder="Any comments?" />
       <div className="modal-buttons">
         <button onClick={handleClose} className="cancel">Cancel</button>
-        {currentReview && <button onClick={handleDelete} className="delete">Clear review</button>}
-        <Button onClick={handleConfirm} disabled={!rating}>Confirm</Button>
+        {currentReview && <button disabled={!!loading} onClick={handleDelete} className="delete">
+          {loading === 'clearing' ? 'Loading...' : 'Delete review'}
+        </button>}
+        <Button onClick={handleConfirm} disabled={!rating || !!loading}>
+          {loading === 'posting' ? 'Loading...' : 'Confirm'}
+        </Button>
       </div>
     </>
   );

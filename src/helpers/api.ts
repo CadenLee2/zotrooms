@@ -1,11 +1,4 @@
-import {StudyRoom, ReviewMap} from '../types/types';
-
-const LOCATIONS = [
-    "Gateway Study Center",
-    "Science Library",
-    "Multimedia Resources Center",
-    "Langson Library"
-];
+import {StudyRoom, ReviewMap, ReviewWithId} from '../types/types';
 
 export async function getRated(): Promise<StudyRoom[]> {
     return fetch("/api/room?ratedOnly=1").then(r => r.json());
@@ -31,4 +24,18 @@ export async function keywordSearch(keywords: string): Promise<StudyRoom[]> {
 
 export async function getReviews(): Promise<ReviewMap> {
     return fetch("/api/review").then(r => r.json())
+}
+
+export async function updateReview(review: ReviewWithId): Promise<boolean> {
+    return fetch("/api/review", {
+        method: "POST",
+        body: JSON.stringify(review)
+    }).then(r => r.ok)
+}
+
+export async function deleteReview(roomId: string): Promise<boolean> {
+    return fetch("/api/review", {
+        method: "DELETE",
+        body: JSON.stringify({ roomId })
+    }).then(r => r.ok)
 }

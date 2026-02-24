@@ -1,4 +1,12 @@
 .study-room-list {
   display: flex;
   gap: 12px;
+  width: 100%;
+  overflow-x: auto;
+
+  &.grid {
+    flex-wrap: wrap;
+    overflow-x: unset;
+    justify-content: flex-start;
+  }
 }
