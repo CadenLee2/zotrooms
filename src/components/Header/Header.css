@@ -29,4 +29,20 @@ div.header {
     width: 50%;
     min-width: 230px;
   }
+
+  button {
+    font-size: inherit;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    height: fit-content;
+    border: none;
+    padding: 0px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

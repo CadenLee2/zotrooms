@@ -41,10 +41,18 @@ function Searchbar() {
 }
 
 export default function Header() {
+  const dispatch = useAppDispatch();
+
+  const resetSearch = () => {
+    dispatch(setSearch({ newSearch: '' }));
+  }
+
   return (
     <div className="header">
-      <Image loading="eager" src={ZotRoomsIcon} alt="ZotRooms icon" />
-      <h1>ZotRooms</h1>
+      <button onClick={resetSearch}>
+        <Image loading="eager" src={ZotRoomsIcon} alt="ZotRooms icon" />
+        <h1>ZotRooms</h1>
+      </button>
       <Searchbar />
     </div>
   );
