@@ -35,7 +35,7 @@ function Searchbar() {
       onChange={(e) => dispatch(setSearch({ newSearch: e.target.value }))}
       ref={searchbarRef}
       type="text"
-      placeholder="Search for keywords (Ctrl+K)..."
+      placeholder="Search AnteaterAPI for rooms (Ctrl+K)..."
     />
   )
 }

@@ -14,3 +14,9 @@
 .sub {
   color: var(--sub);
 }
+
+.attribution {
+  position: fixed;
+  bottom: 0px;
+  padding: 20px 24px;
+}
