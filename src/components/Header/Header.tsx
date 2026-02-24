@@ -3,10 +3,12 @@ import "./Header.css";
 import Image from 'next/image';
 import ZotRoomsIcon from '../../../public/zotrooms_icon.png';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState, KeyboardEventHandler } from 'react';
 
 import { setSearch } from '../../store/siteSlice';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
+
+import { MdSearch } from 'react-icons/md';
 
 function Searchbar() {
   const searchbarRef = useRef<HTMLInputElement | null>(null);
@@ -27,16 +29,40 @@ function Searchbar() {
   }, []);
 
   const search = useAppSelector((state) => state.siteSlice.search);
+
+  const [input, setInput] = useState(search);
+
   const dispatch = useAppDispatch();
 
+  const submitSearch = () => {
+    dispatch(setSearch({ newSearch: input }));
+  }
+
+  const handleKeyUp: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === 'Enter') {
+      submitSearch();
+    }
+  }
+
+  const handleChange = (newValue: string) => {
+    setInput(newValue);
+    if (newValue === '') {
+      dispatch(setSearch({ newSearch: newValue }));
+    }
+  }
+
   return (
-    <input
-      value={search}
-      onChange={(e) => dispatch(setSearch({ newSearch: e.target.value }))}
-      ref={searchbarRef}
-      type="text"
-      placeholder="Search AnteaterAPI for rooms (Ctrl+K)..."
-    />
+    <div className="searchbar">
+      <input
+        value={input}
+        onChange={(e) => handleChange(e.target.value)}
+        onKeyUp={handleKeyUp}
+        ref={searchbarRef}
+        type="text"
+        placeholder="Search AnteaterAPI for rooms (Ctrl+K)..."
+      />
+      {input && <button title="Submit search" onClick={submitSearch}><MdSearch /></button>}
+    </div>
   )
 }
 
@@ -49,7 +75,7 @@ export default function Header() {
 
   return (
     <div className="header">
-      <button onClick={resetSearch}>
+      <button className="logo" onClick={resetSearch}>
         <Image loading="eager" src={ZotRoomsIcon} alt="ZotRooms icon" />
         <h1>ZotRooms</h1>
       </button>

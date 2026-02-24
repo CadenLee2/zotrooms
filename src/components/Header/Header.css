@@ -24,13 +24,37 @@ div.header {
     line-height: 34px;
   }
 
-  input {
-    max-width: 300px;
+  .searchbar {
+    max-width: 320px;
     width: 50%;
     min-width: 230px;
+    position: relative;
+
+    input {
+      width: 100%;
+      padding-right: 40px;
+    }
+
+    button {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      font-size: 20px;
+
+      background: none;
+      color: var(--text);
+      border: none;
+      padding-top: 5px;
+      padding-right: 6px;
+
+      &:hover {
+        cursor: pointer;
+        color: var(--sub);
+      }
+    }
   }
 
-  button {
+  button.logo {
     font-size: inherit;
     font-family: inherit;
     display: flex;
