@@ -90,7 +90,7 @@ export default function MainPage() {
       <div className="main-content">
         {search ? (
           <>
-            <h2>Search Results</h2>
+            <h2>Results for <i>{search}</i></h2>
             {(searchResults && finishedLoadingSearch) ? <StudyRoomList studyRooms={searchResults} /> : "Loading..."}
           </>
         ) : (

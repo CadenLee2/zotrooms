@@ -60,7 +60,7 @@ function ModalContents(props: { room: StudyRoom, handleClose(): void }) {
         {room.techEnhanced && <span title="Tech Enhanced" className="pill"><MdMonitor />TECH</span>}
       </div>
       <p>{room.description}</p>
-      <p className="sub">Directions: {room.directions}</p>
+      {room.directions && <p className="sub">Directions: {room.directions}</p>}
       <div><hr /></div>
       <h3>{currentReview ? 'Edit' : 'Leave'} your rating!</h3>
       <RatingDispInteractive value={rating ?? undefined} setValue={(i) => setRating(i)} />
