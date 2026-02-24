@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Comic_Neue } from 'next/font/google';
 import "./globals.css";
+import React from "react";
 
 const font = Comic_Neue({weight:"400", variable: "--font-comic-neue"});
 
