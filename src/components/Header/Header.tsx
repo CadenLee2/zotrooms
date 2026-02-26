@@ -57,7 +57,7 @@ function Searchbar(props: { input: string, setInput(s: string): void }) {
         onKeyUp={handleKeyUp}
         ref={searchbarRef}
         type="text"
-        placeholder="Search AnteaterAPI for rooms (Ctrl+K)..."
+        placeholder="Search Anteater API for rooms (Ctrl+K)..."
       />
       {input && <button title="Submit search" onClick={submitSearch}><MdSearch /></button>}
     </div>
