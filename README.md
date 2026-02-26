@@ -5,18 +5,20 @@ Zotrooms is a demo project for ICSSC's deployment workshop at IrvineHacks 2026. 
 ## Running locally
 1. Clone this repository: `git clone https://github.com/CadenLee2/zotrooms`
 2. `npm install`
-3. `npm run dev`
-    - This should work without additional configuration (using the in-memory data mode). If you want to use a database, configure the URL in your `backend/.env` file!
+3. Set up a PostgreSQL database and configure the URL in your `.env` file (see [Configuration](#configuration))
+4. `npm run dev` and visit <http://localhost:3000>
 
 ## Deployment
 Use Railway!
 
 ## Configuration
-- If you want to use the in-memory data mode (i.e. will reset every time you restart the server), you don't need to do anything
-- If you want to use the Postgres database mode, you will need to:
-    - Copy `backend/.env.example` into `backend/.env`
-    - Set up a PostgreSQL database somewhere
-    - Set `POSTGRES_DB_URL` to your database URL
+This project requires a PostgreSQL database to store data persistently. You'll have to set one up:
+- Locally: install PostgreSQL and set up a database, or
+- Cloud-hosted: use a platform like [Railway](https://railway.com?referralCode=NOW5I_) to make it easy
+
+To configure the database URL:
+- Copy `.env.example` into `.env`
+- Set `POSTGRES_DB_URL` to your database URL
 
 ## Stack
 This project uses the following technologies:
