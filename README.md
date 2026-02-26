@@ -1,22 +1,35 @@
-# Zotrooms
+# ZotRooms
 
-Zotrooms is a demo project for ICSSC's deployment workshop at IrvineHacks 2026. It lets you rate study rooms on campus.
+ZotRooms is a demo project for ICSSC's deployment workshop at IrvineHacks 2026. It lets you rate study rooms on campus.
+
+![Leaving a review with ZotRooms](screenshots/review.png)
 
 ## Running locally
 1. Clone this repository: `git clone https://github.com/CadenLee2/zotrooms`
 2. `npm install`
-3. `npm run dev`
-    - This should work without additional configuration (using the in-memory data mode). If you want to use a database, configure the URL in your `backend/.env` file!
-
-## Deployment
-Use Railway!
+3. Set up a PostgreSQL database and configure the URL in your `.env` file (see [Configuration](#configuration))
+4. `npm run dev` and visit <http://localhost:3000>
 
 ## Configuration
-- If you want to use the in-memory data mode (i.e. will reset every time you restart the server), you don't need to do anything
-- If you want to use the Postgres database mode, you will need to:
-    - Copy `backend/.env.example` into `backend/.env`
-    - Set up a PostgreSQL database somewhere
-    - Set `POSTGRES_DB_URL` to your database URL
+Copy `.env.example` into `.env`.
+
+This project requires a PostgreSQL database to store data persistently. You'll have to set one up:
+- Locally: install PostgreSQL and set up a database, or
+- Cloud-hosted: use a platform like [Railway](https://l.dantedam.com/rlwy/ih26) to make it easy
+    - Sign up with your GitHub account
+    - Create a PostgreSQL database
+    - Go to Database -> Connect -> Public Network -> copy the connection URL
+
+In `.env`, set `DATABASE_URL` to your database URL
+
+## Deployment
+To deploy via Railway:
+- [Sign up](https://l.dantedam.com/rlwy/ih26) with your GitHub account
+- Configure access to your fork of this repository
+- Edit the Variables -> `DATABASE_URL` to match what's in your local `.env` (note: this won't work if you ran your database locally)
+- Click "Deploy"
+
+Optionally, you can go to Settings -> Networking to generate a URL so friends can access the project!
 
 ## Stack
 This project uses the following technologies:
