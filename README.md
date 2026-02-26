@@ -15,7 +15,7 @@ Copy `.env.example` into `.env`.
 
 This project requires a PostgreSQL database to store data persistently. You'll have to set one up:
 - Locally: install PostgreSQL and set up a database, or
-- Cloud-hosted: use a platform like [Railway](https://railway.com?referralCode=NOW5I_) to make it easy
+- Cloud-hosted: use a platform like [Railway](https://l.dantedam.com/rlwy/ih26) to make it easy
     - Sign up with your GitHub account
     - Create a PostgreSQL database
     - Go to Database -> Connect -> Public Network -> copy the connection URL
@@ -24,7 +24,7 @@ In `.env`, set `DATABASE_URL` to your database URL
 
 ## Deployment
 To deploy via Railway:
-- [Sign up](https://railway.com?referralCode=NOW5I_) with your GitHub account
+- [Sign up](https://l.dantedam.com/rlwy/ih26) with your GitHub account
 - Configure access to your fork of this repository
 - Edit the Variables -> `DATABASE_URL` to match what's in your local `.env` (note: this won't work if you ran your database locally)
 - Click "Deploy"
