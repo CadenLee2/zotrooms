@@ -2,7 +2,7 @@
 
 ZotRooms is a demo project for ICSSC's deployment workshop at IrvineHacks 2026. It lets you rate study rooms on campus.
 
-[Leaving a review with ZotRooms](screenshots/review.png)
+![Leaving a review with ZotRooms](screenshots/review.png)
 
 ## Running locally
 1. Clone this repository: `git clone https://github.com/CadenLee2/zotrooms`
